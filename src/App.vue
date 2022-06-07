@@ -49,3 +49,4 @@
 
 <!-- Import CSS -->
 <style src="@/assets/css/main.css"></style>
+<style src="@/assets/css/transition.css"></style>
