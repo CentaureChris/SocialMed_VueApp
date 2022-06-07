@@ -1,26 +1,51 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app-shell-component">
+    <!-- Header -->
+    <HeaderApp />
+
+    <!-- Main -->
+    <main>
+      <!-- User router-view directive -->
+      <router-view
+        v-slot="{ Component }"
+        :key="$route.name"
+      >
+        <!-- Inject path component in a "component" directive -->
+        <component :is="Component" />
+      </router-view>
+    </main>
+
+    <!-- Footer -->
+    <FooterApp />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+/* 
+  [IMPORT] Modules/components
+*/
+  import HeaderApp from './components/main/HeaderApp.vue';
+  import FooterApp from './components/main/FooterApp.vue';
+//
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+/* 
+  [CTRL] App.vue
+  Define compoenent controller
+*/
+  export default {
+    name: 'App',
+
+    /* 
+      [VUE] Component
+      Used to inject child components
+    */
+      components: {
+        HeaderApp, FooterApp
+      }
+    //
   }
-}
+//
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<!-- Import CSS -->
+<style src="@/assets/css/main.css"></style>
