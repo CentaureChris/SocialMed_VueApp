@@ -5,11 +5,8 @@
       <BaseForm 
         class="mb-4"
         :formvalue="cmpStep === 'login' ? cmpLoginForm : cmpRegisterForm"
+        @onSubmit="onSubmit(cmpStep, $event)"
       />
-
-      <p>home-view-component: cmpLoginForm</p>
-      {{cmpLoginForm}}
-
       <!-- Bind DOM event: @Event -->
       <BaseCallToAction 
         :item="{
@@ -57,6 +54,7 @@
             {
               label: `Email`,
               type: `email`,
+              name: `email`,
               required: true,
               min: 5,
               value: null
@@ -64,6 +62,7 @@
             {
               label: `Password`,
               type: `password`,
+              name: `password`,
               required: true,
               min: 5,
               value: null
@@ -77,6 +76,7 @@
             {
               label: `Name`,
               type: `text`,
+              name: `name`,
               required: true,
               min: 2,
               value: null
@@ -84,6 +84,7 @@
             {
               label: `Email`,
               type: `email`,
+              name: `email`,
               required: true,
               min: 5,
               value: null
@@ -91,6 +92,7 @@
             {
               label: `Password`,
               type: `password`,
+              name: `password`,
               required: true,
               min: 5,
               value: null
@@ -98,6 +100,7 @@
             {
               label: `Repeate password`,
               type: `password`,
+              name: `password-repeate`,
               required: true,
               min: 5,
               value: null
@@ -112,12 +115,18 @@
       Used to add functionnalies
     */
       methods: {
-        onSubmit: function(event){
-          /* 
-            - Call 'onSubmit' methof on each form
-            - Check event to login or register user
-          */
-          console.log('[DEBUG] onSubmit()', event)
+        onSubmit: function(step, event){
+          // Check register form
+          if( step === 'register' ){
+            if( event.password === event['password-repeate'] ){
+              delete event['password-repeate'];
+              console.log('[DEBUG] onSubmit()', step, event)
+            }
+            else{ alert(`Password missmatch`) }
+          }
+          else{
+            console.log('[DEBUG] onSubmit()', step, event)
+          }
         },
       },
     //

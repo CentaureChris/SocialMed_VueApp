@@ -1,6 +1,9 @@
 <template>
   <!-- Bind 'submit' event to emit 'onSubmit' event -->
-  <form action="*" class="base-form-component">
+  <form 
+    class="base-form-component"
+    @submit.prevent="onSubmit(cmpFormvalue.fieldsets)"
+  >
     <h2 class="title is-size-4">{{cmpFormvalue.title}}</h2>
 
     <!-- Display DOM loop: v-for -->
@@ -11,15 +14,15 @@
     >
       <label 
         class="label"
-        :for="`item-${idx}`" 
+        :for="`item-${item.name}-${idx}`" 
         v-text="item.label"
       />
 
       <input 
         class="input"
         :type="item.type" 
-        :id="`item-${idx}`" 
-        :name="`item-${idx}`"
+        :id="`item-${item.name}-${idx}`" 
+        :name="item.name"
         :required="item.required"
         :min="item.min"
         v-model="item.value"
@@ -33,6 +36,7 @@
         isfull: true,
         isprimary: true,
       }"
+      @onClick="onSubmit(cmpFormvalue.fieldsets)"
     />
   </form>
 </template>
@@ -80,7 +84,27 @@
     */
       components: {
         BaseCallToAction
-      }
+      },
+    //
+
+    /* 
+      [VUE] Methods
+      Used to add functionnalies
+    */
+      methods: {
+        onSubmit: function(fieldsets){
+          // Extarct form value
+          let returnedObject = {};
+
+          // Get each form fieldset
+          for( let item of fieldsets ){
+            returnedObject[item.name] = item.value
+          }
+
+          // Return computed value
+          this.$emit('onSubmit', returnedObject)
+        },
+      },
     //
   }
 //

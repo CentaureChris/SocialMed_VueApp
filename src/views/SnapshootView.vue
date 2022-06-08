@@ -1,7 +1,13 @@
 <template>
   <section class="snapshoot-view-component">
       <p>snapshoot-view-component</p>
-
+      <!-- 
+        Add from to save new snapshoot
+        - title
+        - caption
+        - UUID
+        - base64 (for image)
+      -->
       <BaseImage />
   </section>
 </template>
