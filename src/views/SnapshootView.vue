@@ -26,6 +26,12 @@
   export default {
     name: 'SnapshootView',
 
+    data(){
+      return {
+        // Form values
+      }
+    },
+
     /* 
       [VUE] Component
       Used to inject child components
