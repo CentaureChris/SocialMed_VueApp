@@ -7,6 +7,9 @@
         :formvalue="cmpStep === 'login' ? cmpLoginForm : cmpRegisterForm"
       />
 
+      <p>home-view-component: cmpLoginForm</p>
+      {{cmpLoginForm}}
+
       <!-- Bind DOM event: @Event -->
       <BaseCallToAction 
         :item="{
@@ -56,12 +59,14 @@
               type: `email`,
               required: true,
               min: 5,
+              value: null
             },
             {
               label: `Password`,
               type: `password`,
               required: true,
               min: 5,
+              value: null
             }
           ]
         },
@@ -74,24 +79,28 @@
               type: `text`,
               required: true,
               min: 2,
+              value: null
             },
             {
               label: `Email`,
               type: `email`,
               required: true,
               min: 5,
+              value: null
             },
             {
               label: `Password`,
               type: `password`,
               required: true,
               min: 5,
+              value: null
             },
             {
               label: `Repeate password`,
               type: `password`,
               required: true,
               min: 5,
+              value: null
             }
           ]
         }

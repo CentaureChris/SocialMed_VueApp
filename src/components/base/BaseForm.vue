@@ -22,6 +22,7 @@
         :name="`item-${idx}`"
         :required="item.required"
         :min="item.min"
+        v-model="item.value"
       >
     </fieldset>
 
