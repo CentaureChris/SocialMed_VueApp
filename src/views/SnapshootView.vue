@@ -3,10 +3,10 @@
       <p>snapshoot-view-component</p>
       <!-- 
         Add from to save new snapshoot
-        - title
+        - title: required, min 5
         - caption
-        - UUID
-        - base64 (for image)
+        - UUID => generate with uuidv4
+        - base64 (for image) (TODO: add dexie)
       -->
       <BaseImage />
   </section>
