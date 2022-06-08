@@ -1,4 +1,5 @@
 <template>
+  <!-- Bind 'submit' event to emit 'onSubmit' event -->
   <form action="*" class="base-form-component">
     <h2 class="title is-size-4">{{cmpFormvalue.title}}</h2>
 

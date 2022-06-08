@@ -99,6 +99,21 @@
     },
 
     /* 
+      [VUE] Methods
+      Used to add functionnalies
+    */
+      methods: {
+        onSubmit: function(event){
+          /* 
+            - Call 'onSubmit' methof on each form
+            - Check event to login or register user
+          */
+          console.log('[DEBUG] onSubmit()', event)
+        },
+      },
+    //
+
+    /* 
       [VUE] Component
       Used to inject child components
     */
