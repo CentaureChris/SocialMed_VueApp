@@ -24,6 +24,7 @@
 /* 
   [IMPORT] Modules/components
 */
+  import { dexieDb } from './services/dexie.service';
   import HeaderApp from './components/main/HeaderApp.vue';
   import FooterApp from './components/main/FooterApp.vue';
 //
@@ -47,6 +48,14 @@
       data(){
         return {}
       },
+
+      mounted: function(){
+        // Get all snapshoots before dispaying App components
+        dexieDb.snapshoots.toArray( snapshoots => {
+          // Save value in the store
+          this.$store.dispatch('mapSnapshootOperation', snapshoots)
+        })
+      }
     //
   }
 //
