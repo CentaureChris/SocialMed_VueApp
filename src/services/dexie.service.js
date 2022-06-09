@@ -59,6 +59,8 @@
 			@params{collectionProp} IndexDB copllection properties [STRING]
         */
 			async setIndexDbTable( dbVersion, collectionName, collectionProp ){
+
+                console.log('setIndexDbTable', { dbVersion, collectionName, collectionProp })
                 return new Promise( async (resolve, reject) => {
 					try {
                         // Add UUID property end set Dexie table
@@ -69,7 +71,7 @@
                             Add new collection
                         */
                             const newDexieTable = this.dexie.version( dbVersion ).stores({
-                                [ collectionName ]: collectionProp.join(', ')
+                                [ collectionName ]: collectionProp
                             });
                         //
         

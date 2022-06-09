@@ -50,6 +50,12 @@
           cmpDexieDb: new DexieDb('insta-clone'),
         }
       },
+
+      mounted: async function(){
+        // Create Dexie collection (table) for users
+        await this.cmpDexieDb.setIndexDbTable( 1, 'users', [ 'name', 'email', 'password' ] );
+        await this.cmpDexieDb.setIndexDbTable( 1, 'snapshoots', [ 'title', 'caption', 'base64' ] );
+      }
     //
   }
 //
