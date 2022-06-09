@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+import { dexieDb } from "@/services/dexie.service"
+
 export default{
     // Define state
     state: {
@@ -19,8 +21,8 @@ export default{
     // Define actions
     actions: {
         // Action to register user
-        registerOperation( { commit, dispatch, state }, data ){
-            console.log('[DEBUG] registerOperation()', data)
+        async registerOperation( { commit, dispatch, state }, data ){
+            console.log('[DEBUG] registerOperation()', data);
 
             // Commit mutation
             commit('userinfo',  { data: data })

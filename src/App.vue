@@ -24,7 +24,6 @@
 /* 
   [IMPORT] Modules/components
 */
-  import DexieDb from './services/dexie.service';
   import HeaderApp from './components/main/HeaderApp.vue';
   import FooterApp from './components/main/FooterApp.vue';
 //
@@ -46,22 +45,8 @@
 
       // Used to define properties class
       data(){
-        return {
-          cmpDexieDb: new DexieDb('insta-clone'),
-        }
+        return {}
       },
-
-      /* mounted: async function(){
-        // Create Dexie collection (table) for users
-        await this.cmpDexieDb.setIndexDbTable( 1, 'users', [ 'name', 'email', 'password' ] );
-        await this.cmpDexieDb.setIndexDbTable( 1, 'snapshoots', [ 'title', 'caption', 'base64' ] );
-
-        const newUser = this.cmpDexieDb.saveIndexDbObject('users', { 
-          name: 'Julien', email: 'julien@dwsapp.io', password : 'azertyuiop'
-        })
-
-        console.log(newUser)
-      } */
     //
   }
 //

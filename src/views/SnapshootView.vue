@@ -25,7 +25,7 @@
 
 <script>
 /* 
-  [IMPORT] Modules/components
+  [IMPORT] Modules/components 
 */
   import BaseImage from '../components/base/BaseImage.vue';
   import BaseForm from '../components/base/BaseForm.vue';
