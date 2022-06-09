@@ -12,6 +12,12 @@
         header-app-component: is connected
       </p>
 
+      <p 
+        v-if="$store.getters.snapshootlist.length"
+      >
+        Nombre de photos <b>{{$store.getters.snapshootlist.length}}</b>
+      </p>
+
       <!-- 
         [LINK] Never use <a>
         To define a basic link use the <router-link> directive has below

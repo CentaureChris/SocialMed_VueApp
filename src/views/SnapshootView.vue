@@ -1,12 +1,17 @@
 <template>
   <section class="snapshoot-view-component section">
-      <!-- 
-        Add from to save new snapshoot
-        - title: required, min 5
-        - caption
-        - UUID => generate with uuidv4
-        - base64 (for image) (TODO: add dexie)
-      -->
+      <!-- Display list of snapshoot -->
+      <ul>
+        <li 
+          class="mb-4 box"
+          v-for="(item, idx) in $store.getters.snapshootlist" 
+          :key="`item-${idx}`"
+        >
+            {{ item }}
+          <BaseImage />
+        </li>
+      </ul>
+
       <!-- Inject value to child compoenent has a HTML property -->
       <article class="box">
         <BaseForm 
@@ -15,7 +20,6 @@
           @onSubmit="onSubmit($event)"
         />
       </article>
-      <BaseImage />
   </section>
 </template>
 
@@ -74,7 +78,8 @@
     methods: {
       // Define method to bind form 'submit' event
       onSubmit: function(event){
-        console.log('[DEBUG] SnapshootView onSubmit()', event)
+        // Dispatch store action
+        this.$store.dispatch('pushSnapshootOperation', event)
       },
     }
   }
