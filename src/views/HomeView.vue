@@ -10,6 +10,7 @@
         :formvalue="cmpStep === 'login' ? cmpLoginForm : cmpRegisterForm"
         @onSubmit="onSubmit(cmpStep, $event)"
       />
+      
       <!-- Bind DOM event: @Event -->
       <BaseCallToAction 
         :item="{
@@ -53,7 +54,7 @@
     data(){
       return {
         // Basic values
-        cmpStep: 'register',
+        cmpStep: 'login',
 
         // Form values
         cmpLoginForm: {
@@ -137,7 +138,8 @@
             else{ alert(`Password missmatch`) }
           }
           else{
-            console.log('[DEBUG] onSubmit()', step, event)
+            // Use store action
+            this.$store.dispatch('loginOperation', event)
           }
         },
       },

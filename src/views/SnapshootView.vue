@@ -1,17 +1,5 @@
 <template>
   <section class="snapshoot-view-component section">
-      <!-- Display list of snapshoot -->
-      <ul>
-        <li 
-          class="mb-4 box"
-          v-for="(item, idx) in $store.getters.snapshootlist" 
-          :key="`item-${idx}`"
-        >
-            {{ item }}
-          <BaseImage />
-        </li>
-      </ul>
-
       <!-- Inject value to child compoenent has a HTML property -->
       <article class="box">
         <BaseForm 
@@ -27,7 +15,6 @@
 /* 
   [IMPORT] Modules/components 
 */
-  import BaseImage from '../components/base/BaseImage.vue';
   import BaseForm from '../components/base/BaseForm.vue';
 //
 
@@ -43,7 +30,7 @@
       Used to inject child components
     */
       components: {
-        BaseImage, BaseForm
+        BaseForm
       },
     //
 

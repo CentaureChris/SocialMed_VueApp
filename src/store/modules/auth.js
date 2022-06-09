@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-async-promise-executor */
 
 import { dexieDb } from "@/services/dexie.service"
 
@@ -32,25 +33,59 @@ export default{
                 // Get new created snapshoot
                 const newUser = await dexieDb['users'].get(newUserId);
             //
-
-            /* 
-                [AUTH] Simulation
-                Save user TOKEN in local storage
-            */
-                localStorage.setItem('userinfo', JSON.stringify(newUser))
-            //
-
-            /* 
-                [STORE] Update
-                Commit new state with indexed object
-            */
-                commit( 'userinfo', { data: newUser } )
-            //
         },
 
         // Action to login user
-        loginOperation( { commit, dispatch, state }, data ){
-            console.log('[DEBUG] loginOperation()', data)
+        async loginOperation( { commit, dispatch, state }, data ){
+            /* 
+                [DEXIE] Save
+                Save API response in Dexie
+            */
+                // Get new created snapshoot
+                const connectedUser = await dexieDb['users'].get(data);
+                if(connectedUser){
+                    // Save user info in localStorage
+                    localStorage.setItem('userinfo', JSON.stringify(connectedUser));
+
+                    /* 
+                        [STORE] Update
+                        Commit new state with indexed object
+                    */
+                        commit( 'userinfo', { data: connectedUser } )
+                    //
+                }
+            //
+        },
+
+        // Action to check user token
+        pkceOperation( { commit, dispatch, state }, data ){
+            return new Promise( async (resolve, reject) => {
+                /* 
+                    [DEXIE] Save
+                    Save API response in Dexie
+                */
+                    // Get new created snapshoot
+                    const connectedUser = await dexieDb['users'].get(data);
+                    if(connectedUser){
+                        // Save user info in localStorage
+                        localStorage.setItem('userinfo', JSON.stringify(connectedUser));
+
+                        /* 
+                            [STORE] Update
+                            Commit new state with indexed object
+                        */
+                            commit( 'userinfo', { data: connectedUser } )
+                        //
+
+                        // Resolve user access
+                        return resolve({ status: 200, value: connectedUser });
+                    }
+                    else{
+                        // Reject user access
+                        return resolve({ status: 400, value: null });
+                    }
+                //
+            })
         },
 
         // Action to check user connection

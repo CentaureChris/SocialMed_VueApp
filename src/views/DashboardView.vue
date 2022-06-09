@@ -1,8 +1,16 @@
 <template>
-  <section class="dashboard-view-component">
-      <p>dashboard-view-component</p>
-
-      <BaseImage />
+  <section class="dashboard-view-component section">
+      <!-- Display list of snapshoot -->
+      <ul>
+        <li 
+          class="mb-4 box"
+          v-for="(item, idx) in $store.getters.snapshootlist" 
+          :key="`item-${idx}`"
+        >
+            {{ item }}
+          <BaseImage />
+        </li>
+      </ul>
   </section>
 </template>
 
