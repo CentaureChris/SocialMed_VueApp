@@ -7,6 +7,7 @@ specifiers:
   '@vue/cli-plugin-eslint': ~5.0.0
   '@vue/cli-service': ~5.0.0
   core-js: ^3.8.3
+  dexie: ^3.2.2
   eslint: ^7.32.0
   eslint-plugin-vue: ^8.0.3
   uuid: ^8.3.2
@@ -16,6 +17,7 @@ specifiers:
 
 dependencies:
   core-js: 3.22.8
+  dexie: 3.2.2
   uuid: 8.3.2
   vue: 3.2.37
   vue-router: 4.0.15_vue@3.2.37
@@ -3326,6 +3328,11 @@ packages:
   /detect-node/2.1.0:
     resolution: {integrity: sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==}
     dev: true
+
+  /dexie/3.2.2:
+    resolution: {integrity: sha512-q5dC3HPmir2DERlX+toCBbHQXW5MsyrFqPFcovkH9N2S/UW/H3H5AWAB6iEOExeraAu+j+zRDG+zg/D7YhH0qg==}
+    engines: {node: '>=6.0'}
+    dev: false
 
   /dir-glob/3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
