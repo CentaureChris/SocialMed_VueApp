@@ -10,8 +10,7 @@
 	Define main imports to create the DEBUG
 */
 	// NPM modules
-	import { reject } from 'core-js/fn/promise';
-import Dexie from 'dexie'; // => https://www.npmjs.com/package/dexie
+    import Dexie from 'dexie'; // => https://www.npmjs.com/package/dexie
 	import { v4 as uuidv4 } from 'uuid';
 
 	// App modules
@@ -46,11 +45,7 @@ import Dexie from 'dexie'; // => https://www.npmjs.com/package/dexie
                         [DEBUG] Init
                         Create new collection
                     */
-                        this.setIndexDbTable( 
-                            +process.env.VUE_APP_INDEXBD_VERSION,
-                            schema,
-                            indexes
-                        );
+                        this.setIndexDbTable( 1 );
                     //
 				//
 			}
@@ -64,7 +59,7 @@ import Dexie from 'dexie'; // => https://www.npmjs.com/package/dexie
 			@params{collectionProp} IndexDB copllection properties [STRING]
         */
 			async setIndexDbTable( dbVersion, collectionName, collectionProp ){
-                return new Promise( async resolve => {
+                return new Promise( async (resolve, reject) => {
 					try {
                         // Add UUID property end set Dexie table
                         collectionProp.push( `uuid` )
@@ -95,7 +90,7 @@ import Dexie from 'dexie'; // => https://www.npmjs.com/package/dexie
 			@params{tableIndex} IndexDB collection index [STRING]
         */
 			saveIndexDbObject( collectionName, itemValue ){
-				return new Promise( async resolve => {
+				return new Promise( async (resolve, reject) => {
 					try {
                         /* 
                             [DEXIE] Create
@@ -121,7 +116,7 @@ import Dexie from 'dexie'; // => https://www.npmjs.com/package/dexie
 			@params{uuids} list of UUIDs [STRING]
         */
 			getIndexDbObject( collectionName, where,  uuids ){
-                return new Promise( async resolve => {
+                return new Promise( async (resolve, reject) => {
 					try {
                         /* 
                             [DEXIE] Get
@@ -147,7 +142,7 @@ import Dexie from 'dexie'; // => https://www.npmjs.com/package/dexie
 			@params{uuids} list of UUIDs [STRING]
         */
 			updateObject( collectionName, key, changes ){
-				return new Promise( async resolve => {
+				return new Promise( async (resolve, reject) => {
                     try {
                         /* 
                             [DEXIE] Update
@@ -173,7 +168,7 @@ import Dexie from 'dexie'; // => https://www.npmjs.com/package/dexie
 			@params{uuids} list of UUIDs [STRING]
         */
 			deleteIndexDbObject( collectionName, id ){
-                return new Promise( async resolve => {
+                return new Promise( async (resolve, reject) => {
                     try {
                         /* 
                             [DEXIE] Delete
@@ -198,7 +193,7 @@ import Dexie from 'dexie'; // => https://www.npmjs.com/package/dexie
 			@params{collectionName} IndexDB collection to create STRING
         */
 			clearTable( collectionName ){
-				return new Promise( async ( resolve ) => {
+				return new Promise( async (resolve, reject) => {
                     try {
                         /* 
                             [DEXIE] Clear

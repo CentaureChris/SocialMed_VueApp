@@ -24,6 +24,7 @@
 /* 
   [IMPORT] Modules/components
 */
+  import DexieDb from './services/dexie.service';
   import HeaderApp from './components/main/HeaderApp.vue';
   import FooterApp from './components/main/FooterApp.vue';
 //
@@ -41,7 +42,14 @@
     */
       components: {
         HeaderApp, FooterApp
-      }
+      },
+
+      // Used to define properties class
+      data(){
+        return {
+          cmpDexieDb: new DexieDb('insta-clone'),
+        }
+      },
     //
   }
 //
