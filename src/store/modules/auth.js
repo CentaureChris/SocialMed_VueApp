@@ -29,6 +29,11 @@ export default{
         // Action to login user
         loginOperation( { commit, dispatch, state }, data ){
             console.log('[DEBUG] loginOperation()', data)
+        },
+
+        // Action to check user connection
+        authguardOperation( { commit, dispatch, state }, data ){
+            console.log('[DEBUG] authguardOperation()', data)
         }
     }
 }
