@@ -1,6 +1,5 @@
 <template>
-  <section class="snapshoot-view-component">
-      <p>snapshoot-view-component</p>
+  <section class="snapshoot-view-component section">
       <!-- 
         Add from to save new snapshoot
         - title: required, min 5
@@ -8,6 +7,14 @@
         - UUID => generate with uuidv4
         - base64 (for image) (TODO: add dexie)
       -->
+      <!-- Inject value to child compoenent has a HTML property -->
+      <article class="box">
+        <BaseForm 
+          class="mb-4"
+          :formvalue="cmpSnapshootForm"
+          @onSubmit="onSubmit($event)"
+        />
+      </article>
       <BaseImage />
   </section>
 </template>
@@ -17,6 +24,7 @@
   [IMPORT] Modules/components
 */
   import BaseImage from '../components/base/BaseImage.vue';
+  import BaseForm from '../components/base/BaseForm.vue';
 //
 
 /* 
@@ -26,20 +34,49 @@
   export default {
     name: 'SnapshootView',
 
-    data(){
-      return {
-        // Form values
-      }
-    },
-
-    /* 
+     /* 
       [VUE] Component
       Used to inject child components
     */
       components: {
-        BaseImage
-      }
+        BaseImage, BaseForm
+      },
     //
+
+    data(){
+      return {
+        // Form values
+        cmpSnapshootForm: {
+          title: `Add new snapshoot`,
+          submit: `Save`,
+          fieldsets: [
+            {
+              label: `Title`,
+              type: `text`,
+              name: `title`,
+              required: true,
+              min: 5,
+              value: null
+            },
+            {
+              label: `Caption`,
+              type: `text`,
+              name: `caption`,
+              required: false,
+              min: false,
+              value: null
+            }
+          ]
+        },
+      }
+    },
+
+    methods: {
+      // Define method to bind form 'submit' event
+      onSubmit: function(event){
+        console.log('[DEBUG] SnapshootView onSubmit()', event)
+      },
+    }
   }
 //
 </script>
