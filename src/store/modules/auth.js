@@ -5,7 +5,7 @@ import { dexieDb } from "@/services/dexie.service"
 export default{
     // Define state
     state: {
-        userinfo: null,
+        userinfo: JSON.parse( localStorage.getItem('userinfo') ) || null,
     },
 
     // Define getters
@@ -22,10 +22,30 @@ export default{
     actions: {
         // Action to register user
         async registerOperation( { commit, dispatch, state }, data ){
-            console.log('[DEBUG] registerOperation()', data);
+            /* 
+                [DEXIE] Save
+                Save API response in Dexie
+            */
+                // Save new snapshot in IndexDB with Dexie.js
+                const newUserId = await dexieDb['users'].add( data );
 
-            // Commit mutation
-            commit('userinfo',  { data: data })
+                // Get new created snapshoot
+                const newUser = await dexieDb['users'].get(newUserId);
+            //
+
+            /* 
+                [AUTH] Simulation
+                Save user TOKEN in local storage
+            */
+                localStorage.setItem('userinfo', JSON.stringify(newUser))
+            //
+
+            /* 
+                [STORE] Update
+                Commit new state with indexed object
+            */
+                commit( 'userinfo', { data: newUser } )
+            //
         },
 
         // Action to login user

@@ -1,6 +1,9 @@
 <template>
   <section class="home-view-component section">
-    <article class="box">
+    <article 
+      class="box"
+      v-if="!$store.getters.userinfo"
+    >
       <!-- Inject value to child compoenent has a HTML property -->
       <BaseForm 
         class="mb-4"
@@ -21,6 +24,12 @@
         }"
         @onClick="cmpStep = $event"
       />
+    </article>
+    <article 
+      class="box"
+      v-else
+    >
+      <h1 class="is-size-4">Bienvenue {{ $store.getters.userinfo.name }}</h1>
     </article>
   </section>
 </template>
