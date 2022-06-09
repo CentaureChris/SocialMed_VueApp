@@ -1,13 +1,34 @@
+/* eslint-disable no-unused-vars */
+
 export default{
     // Define state
-    states: {},
+    state: {
+        userinfo: null,
+    },
 
     // Define getters
-    getters: {},
+    getters: {
+        userinfo: (state) => state.userinfo,
+    },
 
     // Define mutation (eq. setters)
-    mutations: {},
+    mutations: {
+        userinfo( state, payload){ state.userinfo = payload.data }
+    },
 
     // Define actions
-    actions: {}
+    actions: {
+        // Action to register user
+        registerOperation( { commit, dispatch, state }, data ){
+            console.log('[DEBUG] registerOperation()', data)
+
+            // Commit mutation
+            commit('userinfo',  { data: data })
+        },
+
+        // Action to login user
+        loginOperation( { commit, dispatch, state }, data ){
+            console.log('[DEBUG] loginOperation()', data)
+        }
+    }
 }

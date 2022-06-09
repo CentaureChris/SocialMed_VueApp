@@ -44,7 +44,7 @@
     data(){
       return {
         // Basic values
-        cmpStep: 'login',
+        cmpStep: 'register',
 
         // Form values
         cmpLoginForm: {
@@ -57,7 +57,7 @@
               name: `email`,
               required: true,
               min: 5,
-              value: null
+              value: 'julien@dwsapp.io'
             },
             {
               label: `Password`,
@@ -65,7 +65,7 @@
               name: `password`,
               required: true,
               min: 5,
-              value: null
+              value: 'azertyuiop'
             }
           ]
         },
@@ -79,7 +79,7 @@
               name: `name`,
               required: true,
               min: 2,
-              value: null
+              value: 'Julien Noyer'
             },
             {
               label: `Email`,
@@ -87,7 +87,7 @@
               name: `email`,
               required: true,
               min: 5,
-              value: null
+              value: 'julien@dwsapp.io'
             },
             {
               label: `Password`,
@@ -95,7 +95,7 @@
               name: `password`,
               required: true,
               min: 5,
-              value: null
+              value: 'azertyuiop'
             },
             {
               label: `Repeate password`,
@@ -103,7 +103,7 @@
               name: `password-repeate`,
               required: true,
               min: 5,
-              value: null
+              value: 'azertyuiop'
             }
           ]
         }
@@ -119,8 +119,11 @@
           // Check register form
           if( step === 'register' ){
             if( event.password === event['password-repeate'] ){
+              // Delete unused property
               delete event['password-repeate'];
-              console.log('[DEBUG] onSubmit()', step, event)
+
+              // Use store action
+              this.$store.dispatch('registerOperation', event)
             }
             else{ alert(`Password missmatch`) }
           }

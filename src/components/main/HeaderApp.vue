@@ -1,6 +1,16 @@
 <template>
   <header class="header-app-component">
-      <p>header-app-component</p>
+      <p
+        v-if="!$store.getters.userinfo"
+      >
+        header-app-component: is not connected
+      </p>
+      
+      <p 
+        v-else
+      >
+        header-app-component: is connected
+      </p>
 
       <!-- 
         [LINK] Never use <a>
