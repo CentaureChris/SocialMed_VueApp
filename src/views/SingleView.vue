@@ -45,7 +45,9 @@ import { dexieDb } from '@/services/dexie.service'
       [VUE] Methods
       Used to add functionnalies
     */
-      methods: {},
+      methods: {
+        
+      },
     //
 
     /* 
