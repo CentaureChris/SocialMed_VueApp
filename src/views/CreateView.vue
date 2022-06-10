@@ -90,6 +90,7 @@
       // Define method to bind form 'submit' event
       onSubmit: function(event){
         if( this.$route.params.type === 'snapshoot' ){
+          // TODO: find a way to add 'author' ID in snapshoot
           // Dispatch store action
           this.$store.dispatch('pushSnapshootOperation', event)
         }

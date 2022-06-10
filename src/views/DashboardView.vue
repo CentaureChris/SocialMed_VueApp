@@ -16,12 +16,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable vue/no-unused-components */
 /* 
-  [IMPORT] Modules/components
-*/
-  import BaseImage from '../components/base/BaseImage.vue';
-//
-
-/* 
   [CTRL] App.vue
   Define compoenent controller
 */
@@ -32,9 +26,7 @@
       [VUE] Component
       Used to inject child components
     */
-      components: {
-        BaseImage
-      }
+      components: {}
     //
   }
 //
