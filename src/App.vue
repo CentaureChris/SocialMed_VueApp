@@ -25,6 +25,7 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 /* 
   [IMPORT] Modules/components
 */
@@ -74,13 +75,7 @@
         })
       },
 
-      mounted: function(){
-        // Get all snapshoots before dispaying App components
-        dexieDb.snapshoots.toArray( snapshoots => {
-          // Save value in the store
-          this.$store.dispatch('mapSnapshootOperation', snapshoots)
-        })
-      }
+      mounted: function(){}
     //
   }
 //

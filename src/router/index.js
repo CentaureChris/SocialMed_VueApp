@@ -26,10 +26,10 @@
             component: () => import('../views/DashboardView.vue')
         },
         {
-            path: '/snapshoot',
-            name: 'SnapshootView',
+            path: '/add/:type',
+            name: 'CreateView',
             meta: { authguard: true },
-            component: () => import('../views/SnapshootView.vue')
+            component: () => import('../views/CreateView.vue')
         },
         {
             path: '/:type/:id',
