@@ -36,6 +36,12 @@
 </template>
 
 <script>
+/* 
+  TODO: Connected/not connected
+  If a user is connected, the 'HomeView' is not usefull, the dashboard must be the home for a connected user
+  - Find a way to display 'DashboardView' if the user is connected
+*/
+
 /* eslint-disable no-unused-vars */
 /* 
   [IMPORT] Modules/components
