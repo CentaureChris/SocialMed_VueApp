@@ -1,22 +1,20 @@
 <template>
   <section class="dashboard-view-component section">
-      <!-- Display list of snapshoot -->
-      <ul>
-        <li 
-          class="mb-4 box"
-          v-for="(item, idx) in $store.getters.snapshootlist" 
-          :key="`item-${idx}`"
-        >
-          <BaseImage 
-            :item="item"
-            @onDisplaySnapshoot="$router.push({ name: 'SingleView', params: { id: $event } })"
-          />
-        </li>
-      </ul>
+      <!-- 
+        TODO: Display list of albums
+        - Get album list from the store
+        - Generate a loop 'v-for' on album list
+        - Display a child compoenent 'BasePushAlbum.vue':
+          - title
+          - nombers of snapshoots
+          - link to display album
+      -->
   </section>
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
+/* eslint-disable vue/no-unused-components */
 /* 
   [IMPORT] Modules/components
 */
