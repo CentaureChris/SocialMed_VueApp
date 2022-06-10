@@ -1,7 +1,20 @@
 <template>
   <section class="single-view-component section" v-if="cmpSingleItem">
-    
-     <p>{{ cmpSingleItem }}</p>
+    <template v-if="['snapshoot', 'album'].indexOf($route.params.type) !== -1">
+      <article class="box"  v-if="$route.params.type === 'snapshoot'">
+        <h1 class="is-size-2">{{ cmpSingleItem.title }}</h1>
+        <p>{{ cmpSingleItem.caption }}</p>
+      </article>
+
+      <article class="box" v-if="$route.params.type === 'album'">
+        <h1 class="is-size-2">Album view</h1>
+      </article>
+    </template>
+    <template v-else>
+      <article class="box">
+        <h1 class="is-size-2">404</h1>
+      </article>
+    </template>
   </section>
 </template>
 
