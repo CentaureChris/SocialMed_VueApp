@@ -88,9 +88,17 @@ export default{
             })
         },
 
-        // Action to check user connection
-        authguardOperation( { commit, dispatch, state }, data ){
-            console.log('[DEBUG] authguardOperation()', data)
+        // Action to logout user
+        logoutOperation( { commit, dispatch, state }, data ){
+            // Delete localStorage to disable auto-connection
+            localStorage.removeItem('userinfo');
+
+            /* 
+                [STORE] Update
+                Delete 'userinfo' stored value to update DOM
+            */
+                commit( 'userinfo', { data: null } )
+            //
         }
     }
 }

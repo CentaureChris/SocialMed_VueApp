@@ -1,7 +1,9 @@
 <template>
   <div class="app-shell-component">
     <!-- Header -->
-    <HeaderApp />
+    <HeaderApp 
+      @onLogout="onLogout"
+    />
 
     <!-- Main -->
     <main>
@@ -47,6 +49,27 @@
       // Used to define properties class
       data(){
         return {}
+      },
+
+      methods: {
+        onLogout: function(event){
+          // Save value in the store
+          this.$store.dispatch('logoutOperation', event)
+        },
+      },
+
+      created: function(){
+        // Subscribe to store mutations
+        this.$store.subscribe( mutations => {
+          // Switch mutation
+          switch( mutations.type ){
+            case 'userinfo': 
+              if( !mutations.payload.data ) this.$router.push({ name: 'HomeView' })
+              break;
+            
+            default: break;
+          }
+        })
       },
 
       mounted: function(){

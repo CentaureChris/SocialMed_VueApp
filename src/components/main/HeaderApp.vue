@@ -1,5 +1,5 @@
 <template>
-  <header class="header-app-component">
+  <header class="header-app-component section">
       <p
         v-if="!$store.getters.userinfo"
       >
@@ -9,7 +9,11 @@
       <p 
         v-else
       >
-        header-app-component: is connected
+        <button 
+          class="button"
+          v-text="`Logout`"
+          @click.prevent="$emit('onLogout', true)"
+       />
       </p>
 
       <p 
