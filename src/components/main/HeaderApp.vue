@@ -1,26 +1,22 @@
 <template>
   <header class="header-app-component section">
-      <p
-        v-if="!$store.getters.userinfo"
-      >
+      <div v-if="!cmpUserinfo">
         header-app-component: is not connected
-      </p>
+      </div>
       
-      <p 
-        v-else
-      >
+      <div v-else >
         <button 
           class="button"
           v-text="`Logout`"
           @click.prevent="$emit('onLogout', true)"
        />
-      </p>
+        <p 
+          v-if="cmpSnapshootlist.length"
+        >
+          Nombre de photos <b>{{cmpSnapshootlist.length}}</b>
+        </p>
+      </div>
 
-      <p 
-        v-if="$store.getters.snapshootlist.length"
-      >
-        Nombre de photos <b>{{$store.getters.snapshootlist.length}}</b>
-      </p>
 
       <!-- 
         [LINK] Never use <a>
@@ -42,11 +38,31 @@
     name: 'HeaderApp',
 
     /* 
-      [VUE] Component
-      Used to inject child components
+      [VUE] Props
+      Data binding from parent component
     */
-      components: {
-      }
+      props: {
+        userinfo: {
+          type: Object,
+          required: false,
+          default: () => null
+        },
+        snapshootlist: {
+          type: Array,
+          required: false,
+          default: () => []
+        }
+      },
+    //
+
+    /* 
+      [VUE] Computed
+      Used to have version of property value
+    */
+      computed: {
+        cmpUserinfo: function(){ return this.userinfo },
+        cmpSnapshootlist: function(){ return this.snapshootlist },
+      },
     //
   }
 //

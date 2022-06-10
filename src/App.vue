@@ -2,6 +2,8 @@
   <div class="app-shell-component">
     <!-- Header -->
     <HeaderApp 
+      :userinfo="$store.getters.userinfo"
+      :snapshootlist="$store.getters.snapshootlist"
       @onLogout="onLogout"
     />
 
