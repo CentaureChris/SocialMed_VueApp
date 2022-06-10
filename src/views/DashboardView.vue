@@ -7,8 +7,10 @@
           v-for="(item, idx) in $store.getters.snapshootlist" 
           :key="`item-${idx}`"
         >
-            {{ item }}
-          <BaseImage />
+          <BaseImage 
+            :item="item"
+            @onDisplaySnapshoot="$router.push({ name: 'SingleView', params: { id: $event } })"
+          />
         </li>
       </ul>
   </section>

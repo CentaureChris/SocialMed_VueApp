@@ -30,6 +30,12 @@
             name: 'SnapshootView',
             meta: { authguard: true },
             component: () => import('../views/SnapshootView.vue')
+        },
+        {
+            path: '/snapshoot/:id',
+            name: 'SingleView',
+            meta: { authguard: true },
+            component: () => import('../views/SingleView.vue')
         }
     ];
 //
