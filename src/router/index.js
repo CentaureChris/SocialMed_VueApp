@@ -37,6 +37,12 @@
             meta: { authguard: true },
             component: () => import('../views/SingleView.vue')
         },
+        {
+            path: '/:type',
+            name: 'GlobalView',
+            meta: { authguard: true },
+            component: () => import('../views/GlobalView.vue')
+        },
     ];
 //
 
