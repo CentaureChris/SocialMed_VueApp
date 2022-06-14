@@ -32,9 +32,7 @@ export default{
 
         // Snapshot mutations
         snapshoot( state, payload){ state.snapshoot = payload.data },
-        snapshootlist( state, payload){ 
-            state.snapshootlist.push(payload.data) 
-        },
+        snapshootlist( state, payload){ state.snapshootlist.push(payload.data)},
     },
 
     // Define actions

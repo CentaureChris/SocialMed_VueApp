@@ -2,12 +2,15 @@
   <section class="snapshoot-view-component section">
       <template v-if="$route.params.type === 'snapshoot'">
         <!-- Display video stream -->
-        <video 
+        <!-- <button @click="initVideo()">start video</button> -->
+        <!-- <video 
           ref="webcamhandeler"
           playsinline
           autoplay
+          @canplay="initCanvas()"
         />
-
+        <button @click="takePicture()">Take picture</button> 
+        <canvas ref="canvas"></canvas> -->
         <article class="box">
           <BaseForm 
             class="mb-4"
@@ -26,6 +29,7 @@
         </article>
       </template>
   </section>
+  
 </template>
 
 <script>
@@ -54,6 +58,7 @@
     data(){
       return {
         video: undefined,
+        canvas: null,
         videostream: undefined,
         // Form values
         cmpSnapshootForm: {
@@ -126,19 +131,31 @@
           }
         })
       },
+      takePicture: function(){
+        let context = this.canvas.getContext("2d")
+        context.drawImage(this.video,0,0,this.video.videoWidth,this.video.videoHeight)
+        console.log(context)
+        // this.$emit('picture-taken',this.canvas.toDataUrl('image/png'))
+      },
+
+      initCanvas: function(){
+        this.canvas.setAttribute('width',this.video.videoWidth)
+        this.canvas.setAttribute('height',this.video.videoHeight)
+      },
       
       // Define method to bind form 'submit' event
       onSubmit: function(event){
         if( this.$route.params.type === 'snapshoot' ){
           // TODO: find a way to add 'author' ID in snapshoot
+          event.author = this.$store.getters.userinfo.id;
           // Dispatch store action
-          this.$store.dispatch('pushSnapshootOperation', event)
+              this.$store.dispatch('pushSnapshootOperation', event)
         }
         else if( this.$route.params.type === 'album' ){
           // Add user id
           event.author = this.$store.getters.userinfo.id;
-          
           // Dispatch store action
+          // console.log(event)
           this.$store.dispatch('saveAlbumOperation', event)
         }
       },
@@ -146,9 +163,11 @@
 
     mounted: function(){
       // Check param type to init webcam
-      if( this.$route.params.type === 'snapshoot' ){
-        this.initVideo()
-      }
+      // if( this.$route.params.type === 'snapshoot' ){
+      //   this.initVideo()
+      // }
+      this.video = this.$refs.webcamhandeler
+      this.canvas = this.$refs.canvas
     }
     
   }

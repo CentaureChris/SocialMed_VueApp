@@ -1,3 +1,12 @@
+<!-- 
+TODO: Display list of albums
+- Get album list from the store
+- Generate a loop 'v-for' on album list
+- Display a child compoenent 'BasePushAlbum.vue':
+- title
+- nombers of snapshoots
+- link to display album
+-->
 <template>
   <section class="dashboard-view-component section">
       <!-- 
@@ -21,7 +30,6 @@
 import { dexieDb } from '@/services/dexie.service'
 
 /* eslint-disable no-unused-vars */
-/* eslint-disable vue/no-unused-components */
 /* 
   [CTRL] App.vue
   Define compoenent controller
@@ -54,7 +62,7 @@ import { dexieDb } from '@/services/dexie.service'
       [VUE] Component
       Used to inject child components
     */
-      components: {}
+      components: {},
     //
   }
 //
