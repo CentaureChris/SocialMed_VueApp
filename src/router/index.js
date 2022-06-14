@@ -32,10 +32,16 @@
             component: () => import('../views/CreateView.vue')
         },
         {
-            path: '/:type/:id',
+            path: '/album/:id',
             name: 'SingleView',
             meta: { authguard: true },
             component: () => import('../views/SingleView.vue')
+        },
+        {
+            path: '/snapshoot/:id',
+            name: 'BasePushAlbum',
+            meta: { authguard: true },
+            component: () => import('../views/BasePushAlbum.vue')
         },
     ];
 //

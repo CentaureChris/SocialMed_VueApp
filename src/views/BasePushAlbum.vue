@@ -1,13 +1,21 @@
-<template>
+<!-- 
+    TODO: Create 'BasePushAlbum'
+    A "Push" component is used to display general item iformation.
+    Add HTML tag to:
+    - display album title
+    - display snapshoot quentity
+
+    Add functionality to:
+    - open one single snapshoot in 'SingleView.vue'
+ -->
+
+ <template>
   <section>
     <article class="box m-4" v-if="cmpSingleItem">
       <h1 class="is-size-2">Title: {{ cmpSingleItem.title }}</h1>
+      <p >caption: {{ cmpSingleItem.caption }}</p>
       <small >Author: {{ cmpSingleItem.author }}</small>
-      <ul>
-        <li v-for="snap in cmpAllSnap" :key="snap.id" @click="toSnapshoot(snap.id)">  
-          <p class="box m-2" v-if="snap.album === $route.params.id"> {{ snap }} </p>
-        </li>
-      </ul>
+      
     </article>
   </section>
 </template>
@@ -19,13 +27,12 @@ import { dexieDb } from '@/services/dexie.service'
   Define compoenent controller
 */
   export default {
-    name: 'SingleView',
+    name: 'BasePushAlbum',
 
     // Used to define properties class
     data(){
       return {
         cmpSingleItem: null,
-        cmpAllSnap: null,
       }
     },
 
@@ -34,9 +41,7 @@ import { dexieDb } from '@/services/dexie.service'
       Used to add functionnalies
     */
       methods: {
-        toSnapshoot: function(id){
-          this.$router.push({name: "BasePushAlbum", params: { id: id}})
-        }
+        
       },
     //
 
@@ -52,13 +57,12 @@ import { dexieDb } from '@/services/dexie.service'
         [DEXIE] Save
         Save API response in Dexie
       */
-        // Save new snapshot in IndexDB with Dexie.js
-        this.cmpSingleItem = await dexieDb.albums.get( +this.$route.params.id );
-        if(!this.cmpSingleItem){
-          this.$router.push({ name: 'DashboardView' })
-        }
-        this.cmpAllSnap = await dexieDb.snapshoots.toArray();
-      //
+     
+      // Save new snapshot in IndexDB with Dexie.js
+      this.cmpSingleItem = await dexieDb.snapshoots.get( +this.$route.params.id );
+      if(!this.cmpSingleItem){
+        this.$router.push({ name: 'DashboardView' })
+      }
     }
   }
 //
