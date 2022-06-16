@@ -1,24 +1,15 @@
 <!-- 
 TODO: Display list of albums
-- Get album list from the store
-- Generate a loop 'v-for' on album list
-- Display a child compoenent 'BasePushAlbum.vue':
-- title
+✅ - Get album list from the store
+✅ - Generate a loop 'v-for' on album list
+✅ - Display a child compoenent 'BasePushAlbum.vue':
+✅ - title
 - nombers of snapshoots
-- link to display album
+✅ - link to display album
 -->
 <template>
   <section class="dashboard-view-component section">
-      <!-- 
-        TODO: Display list of albums
-        - Get album list from the store
-        - Generate a loop 'v-for' on album list
-        - Display a child compoenent 'BasePushAlbum.vue':
-          - title
-          - nombers of snapshoots
-          - link to display album 
-      -->
-      <h1 class="is-size-2" >Album Dashboard</h1>
+      <h1 class="is-size-2" >Album Dashboard <button @click="addAlbum()">Add new Album</button></h1>
       <article class="box" v-for="album in cmpAlbumItem" :key="album.id" @click="toAlbum(album.id)">
         <h2>{{ album.title }}</h2>
         <h3>{{ album.id }}</h3>
@@ -28,8 +19,8 @@ TODO: Display list of albums
 
 <script>
 import { dexieDb } from '@/services/dexie.service'
-
 /* eslint-disable no-unused-vars */
+
 /* 
   [CTRL] App.vue
   Define compoenent controller
@@ -46,6 +37,9 @@ import { dexieDb } from '@/services/dexie.service'
     methods: {
       toAlbum: function(id) {
         this.$router.push({name: "SingleView", params: {id: id}})
+      },
+      addAlbum: function(){
+        this.$router.push({name: "CreateView", params:{type: "album", id: 1}})
       }
     },
 

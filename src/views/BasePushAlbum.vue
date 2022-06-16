@@ -9,19 +9,30 @@
     - open one single snapshoot in 'SingleView.vue'
  -->
 
- <template>
+<template>
   <section>
     <article class="box m-4" v-if="cmpSingleItem">
       <h1 class="is-size-2">Title: {{ cmpSingleItem.title }}</h1>
       <p >caption: {{ cmpSingleItem.caption }}</p>
       <small >Author: {{ cmpSingleItem.author }}</small>
-      
+      <Snapshoot :data="cmpSingleItem"/>
     </article>
   </section>
+
+  <!-- <div class="modal" :class="{'is-active': showModalFlag}">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <button class="delete" aria-label="close" @click="cancelModal">></button>
+      <p class="image is-4by3">
+        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="">
+      </p>
+    </div>
+  </div> -->
 </template>
 
 <script>
 import { dexieDb } from '@/services/dexie.service'
+import Snapshoot from '../components/base/SnapShoot.vue'
 /* 
   [CTRL] App.vue
   Define compoenent controller
@@ -40,16 +51,16 @@ import { dexieDb } from '@/services/dexie.service'
       [VUE] Methods
       Used to add functionnalies
     */
-      methods: {
-        
-      },
+      methods: {},
     //
 
     /* 
       [VUE] Component
       Used to inject child components
     */
-      components: {},
+      components: {
+        Snapshoot
+      },
     //
 
     mounted: async function(){

@@ -1,7 +1,8 @@
 <template>
   <section>
     <article class="box m-4" v-if="cmpSingleItem">
-      <h1 class="is-size-2">Title: {{ cmpSingleItem.title }}</h1>
+      <h1 class="is-size-2">Title: {{ cmpSingleItem.title }} <button @click="toAddSnapshoot(cmpSingleItem.id)">Add Snapshoot</button></h1>
+      
       <small >Author: {{ cmpSingleItem.author }}</small>
       <ul>
         <li v-for="snap in cmpAllSnap" :key="snap.id" @click="toSnapshoot(snap.id)">  
@@ -36,6 +37,9 @@ import { dexieDb } from '@/services/dexie.service'
       methods: {
         toSnapshoot: function(id){
           this.$router.push({name: "BasePushAlbum", params: { id: id}})
+        },
+        toAddSnapshoot: function(id){
+          this.$router.push({name: 'CreateView', params:{type: 'snapshoot', id:id}})
         }
       },
     //

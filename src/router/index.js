@@ -26,7 +26,7 @@
             component: () => import('../views/DashboardView.vue')
         },
         {
-            path: '/add/:type',
+            path: '/add/:type/:id',
             name: 'CreateView',
             meta: { authguard: true },
             component: () => import('../views/CreateView.vue')
@@ -70,7 +70,6 @@
                     email: StoreModule.getters.userinfo.email,
                     password: StoreModule.getters.userinfo.password,
                 })
-
                 // Check user info from API
                 if(connectedUser.status === 200){
                     next();

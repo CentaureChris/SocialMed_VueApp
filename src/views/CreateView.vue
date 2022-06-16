@@ -2,15 +2,20 @@
   <section class="snapshoot-view-component section">
       <template v-if="$route.params.type === 'snapshoot'">
         <!-- Display video stream -->
-        <!-- <button @click="initVideo()">start video</button> -->
-        <!-- <video 
+        <button @click="initVideo()">start video</button>
+        <video 
           ref="webcamhandeler"
           playsinline
           autoplay
           @canplay="initCanvas()"
         />
         <button @click="takePicture()">Take picture</button> 
-        <canvas ref="canvas"></canvas> -->
+        <canvas id="photoTaken" ref="canvas"></canvas>
+        <button class="camera-download">
+          <a id="downloadPhoto" download="VueRocksPhoto.jpg" role="button" @click="downloadImage">
+            Download
+          </a>
+        </button>
         <article class="box">
           <BaseForm 
             class="mb-4"
@@ -80,6 +85,14 @@
               required: false,
               min: false,
               value: null
+            },
+            {
+              label: ``,
+              type: `hidden`,
+              name: `capture`,
+              required: false,
+              min: false,
+              value: this.$refs.canvas
             }
           ]
         },
@@ -142,14 +155,21 @@
         this.canvas.setAttribute('width',this.video.videoWidth)
         this.canvas.setAttribute('height',this.video.videoHeight)
       },
+      downloadImage: function () {
+        const download = document.getElementById("downloadPhoto");
+        const canvas = document.getElementById("photoTaken").toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+        download.setAttribute("href", canvas);
+      },
       
       // Define method to bind form 'submit' event
       onSubmit: function(event){
         if( this.$route.params.type === 'snapshoot' ){
           // TODO: find a way to add 'author' ID in snapshoot
           event.author = this.$store.getters.userinfo.id;
+          event.album = this.$route.params.id
+
           // Dispatch store action
-              this.$store.dispatch('pushSnapshootOperation', event)
+          this.$store.dispatch('pushSnapshootOperation', event)
         }
         else if( this.$route.params.type === 'album' ){
           // Add user id
