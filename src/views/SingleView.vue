@@ -5,8 +5,15 @@
       
       <small >Author: {{ cmpSingleItem.author }}</small>
       <ul>
-        <li v-for="snap in cmpAllSnap" :key="snap.id" @click="toSnapshoot(snap.id)">  
-          <p class="box m-2" v-if="snap.album === $route.params.id"> {{ snap }} </p>
+        <li v-for="snap in cmpAllSnap" :key="snap.id" @click="toSnapshoot(snap.id)">
+        <ul>
+          <li class="box m-2" v-if="snap.album === $route.params.id">
+            <p class="is-size-4"> {{ snap.title }} </p>
+            <p class="is-size-5"> {{ snap.caption }} </p>
+            <p class="is-size-6"> {{ snap.author }} </p>
+          </li>
+        </ul>
+          
         </li>
       </ul>
     </article>

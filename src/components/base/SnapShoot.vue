@@ -8,7 +8,8 @@
         <div class="modal-content">
             <button class="delete" aria-label="close" @click="cancelModal">></button>
             <p class="image is-4by3">
-            <img src="https://bulma.io/images/placeholders/1280x960.png" :alt="data.title">
+            <img :src="data.capture" :alt="data.title">
+            <canvas id="pictureDisplay" ref="canvas"></canvas>
             </p>
         </div>
     </div>
@@ -18,31 +19,32 @@
     export default {
         name: 'SnapShoot',
 
+        props: {
+            data: Promise
+        },
+
         data (){
             return {
                 showModalFlag: false,
                 okPressed: false,
-                picture: "path for picture" 
+                picture: "path for picture",
             }
         },
         
         methods: {
-        showModal() {
-          this.okPressed = false;
-          this.showModalFlag = true;
+            showModal() {
+                this.okPressed = false;
+                this.showModalFlag = true;
+            },
+            okModal() {
+            this.okPressed = true;
+            this.showModalFlag = false;
+            },
+            cancelModal() {
+            this.okPressed = false;
+            this.showModalFlag = false;
+            },
         },
-        okModal() {
-          this.okPressed = true;
-          this.showModalFlag = false;
-        },
-        cancelModal() {
-          this.okPressed = false;
-          this.showModalFlag = false;
-        }
-      },
 
-        props: {
-            data: Promise
-        }
     }
 </script>

@@ -38,6 +38,8 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
+
 /* 
   [IMPORT] Modules/components 
 */
@@ -92,7 +94,7 @@
               name: `capture`,
               required: false,
               min: false,
-              value: this.$refs.canvas
+              value: null
             }
           ]
         },
@@ -149,6 +151,9 @@
         context.drawImage(this.video,0,0,this.video.videoWidth,this.video.videoHeight)
         console.log(context)
         // this.$emit('picture-taken',this.canvas.toDataUrl('image/png'))
+        const canvas = document.getElementById("photoTaken").toDataURL("image/jpeg");
+        // download.setAttribute("href", canvas);
+        // localStorage.setItem('pictureCaptured',JSON.stringify(canvas))
       },
 
       initCanvas: function(){
@@ -157,7 +162,7 @@
       },
       downloadImage: function () {
         const download = document.getElementById("downloadPhoto");
-        const canvas = document.getElementById("photoTaken").toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+        const canvas = document.getElementById("photoTaken").toDataURL("image/jpeg");
         download.setAttribute("href", canvas);
       },
       
@@ -167,7 +172,8 @@
           // TODO: find a way to add 'author' ID in snapshoot
           event.author = this.$store.getters.userinfo.id;
           event.album = this.$route.params.id
-
+          event.capture = document.getElementById("photoTaken").toDataURL("image/jpeg")
+          // console.log(event.capture)
           // Dispatch store action
           this.$store.dispatch('pushSnapshootOperation', event)
         }
