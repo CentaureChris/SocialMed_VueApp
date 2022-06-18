@@ -20,7 +20,7 @@
         name: 'SnapShoot',
 
         props: {
-            data: Promise
+            data: Object
         },
 
         data (){

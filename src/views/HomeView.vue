@@ -134,12 +134,17 @@
 
               // Use store action
               this.$store.dispatch('registerOperation', event)
+              this.$toast.success('Your account have been registed!')
+
             }
-            else{ alert(`Password missmatch`) }
+            else{ 
+              this.$toast.error(`Two password fields are not the same!`);
+            }  
           }
           else{
             // Use store action
             this.$store.dispatch('loginOperation', event)
+            // this.$toast.success('You are logged in!')
           }
         },
       },

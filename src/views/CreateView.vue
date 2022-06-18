@@ -176,6 +176,7 @@
           // console.log(event.capture)
           // Dispatch store action
           this.$store.dispatch('pushSnapshootOperation', event)
+          this.$toast.success('You added a new snapshoot')
         }
         else if( this.$route.params.type === 'album' ){
           // Add user id

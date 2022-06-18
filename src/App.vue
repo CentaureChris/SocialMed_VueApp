@@ -75,6 +75,7 @@
         onLogout: function(event){
           // Save value in the store
           this.$store.dispatch('logoutOperation', event)
+          this.$toast.warning('You are logged out')
         },
       },
 
