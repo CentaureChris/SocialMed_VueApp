@@ -43,18 +43,19 @@ export default{
                 [DEXIE] Save
                 Save API response in Dexie
             */
+              
                 // Save new snapshot in IndexDB with Dexie.js
                 const newAlbumId = await dexieDb.albums.add( data );
-
-                // Get new created snapshoot
+                // Get new created album
                 const newAlbum = await dexieDb.albums.get(newAlbumId);
-            //
 
+                commit( 'albumlist', { data: newAlbum } )
+
+               
             /* 
                 [STORE] Update
                 Commit new state with indexed object
             */
-                commit( 'albumlist', { data: newAlbum } )
             //
         },
 

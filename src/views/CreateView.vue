@@ -43,6 +43,8 @@
 /* 
   [IMPORT] Modules/components 
 */
+  import { dexieDb } from "@/services/dexie.service"
+
   import BaseForm from '../components/base/BaseForm.vue';
 //
 
@@ -167,7 +169,7 @@
       },
       
       // Define method to bind form 'submit' event
-      onSubmit: function(event){
+      onSubmit: async function(event){
         if( this.$route.params.type === 'snapshoot' ){
           // TODO: find a way to add 'author' ID in snapshoot
           event.author = this.$store.getters.userinfo.id;
@@ -176,6 +178,8 @@
           // console.log(event.capture)
           // Dispatch store action
           this.$store.dispatch('pushSnapshootOperation', event)
+            this.cmpSnapshootForm.fieldsets[0].value = null
+            this.cmpSnapshootForm.fieldsets[1].value = null
           this.$toast.success('You added a new snapshoot')
         }
         else if( this.$route.params.type === 'album' ){
@@ -183,7 +187,15 @@
           event.author = this.$store.getters.userinfo.id;
           // Dispatch store action
           // console.log(event)
-          this.$store.dispatch('saveAlbumOperation', event)
+          let table = await dexieDb.albums.toArray()
+          let checkAlbum = table.some(el=>el.title === event.title)
+
+          if( checkAlbum === false){
+            this.$store.dispatch('saveAlbumOperation', event)
+            this.cmpAlbumForm.fieldsets[0].value = null
+          }else{
+            this.$toast.warning(`Album ${event.title} already exist`)
+          }
         }
       },
     },

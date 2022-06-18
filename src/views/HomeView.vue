@@ -67,7 +67,7 @@
               name: `email`,
               required: true,
               min: 5,
-              value: 'julien@dwsapp.io'
+              value: null
             },
             {
               label: `Password`,
@@ -75,7 +75,7 @@
               name: `password`,
               required: true,
               min: 5,
-              value: 'azertyuiop'
+              value: null
             }
           ]
         },
@@ -89,7 +89,7 @@
               name: `name`,
               required: true,
               min: 2,
-              value: 'Julien Noyer'
+              value: null
             },
             {
               label: `Email`,
@@ -97,7 +97,7 @@
               name: `email`,
               required: true,
               min: 5,
-              value: 'julien@dwsapp.io'
+              value: null
             },
             {
               label: `Password`,
@@ -105,7 +105,7 @@
               name: `password`,
               required: true,
               min: 5,
-              value: 'azertyuiop'
+              value: null
             },
             {
               label: `Repeate password`,
@@ -113,7 +113,7 @@
               name: `password-repeate`,
               required: true,
               min: 5,
-              value: 'azertyuiop'
+              value: null
             }
           ]
         }
@@ -134,7 +134,7 @@
 
               // Use store action
               this.$store.dispatch('registerOperation', event)
-              this.$toast.success('Your account have been registed!')
+              this.$toast.success('Your account have been registered!')
 
             }
             else{ 
