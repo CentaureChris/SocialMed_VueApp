@@ -9,13 +9,20 @@ TODO: Display list of albums
 -->
 <template>
   <section class="dashboard-view-component section">
-      <h1 class="is-size-2" >Album Dashboard <button @click="addAlbum()">Add new Album</button></h1>
-      <article class="box" v-for="album in cmpAlbumItem" :key="album.id" @click="toAlbum(album.id)">
+    <h1 class="is-size-2" >Album Dashboard <button @click="addAlbum()">Add new Album</button></h1>
+    <article class="box item" v-for="album in cmpAlbumItem" :key="album.id" @click="toAlbum(album.id)">
+      <div >
         <h2>{{ album.title }}</h2>
         <h3>{{ album.id }}</h3>
-      </article>
+        <!-- <p >{{ cmpSnapshootlist.length }}</p> -->
+      </div>
+      <div>
+        <button class="deletebtn button" @click.prevent="deleteAlbum(album.id)">Delete</button>
+      </div>
+    </article>  
   </section>
 </template>
+
 
 <script>
 import { dexieDb } from '@/services/dexie.service'
@@ -40,6 +47,11 @@ import { dexieDb } from '@/services/dexie.service'
       },
       addAlbum: function(){
         this.$router.push({name: "CreateView", params:{type: "album", id: 1}})
+      },
+      deleteAlbum: function(albumId){
+        if(confirm('confirm delete')){
+          dexieDb.albums.delete(albumId)
+        }
       }
     },
 
@@ -51,7 +63,6 @@ import { dexieDb } from '@/services/dexie.service'
         // Save new snapshot in IndexDB with Dexie.js
         this.cmpAlbumItem = await dexieDb.albums.toArray();
      },
-
     /* 
       [VUE] Component
       Used to inject child components
@@ -61,3 +72,8 @@ import { dexieDb } from '@/services/dexie.service'
   }
 //
 </script>
+
+
+<style>
+  @import '../assets/css/dashboard.css';
+</style>

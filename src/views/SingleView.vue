@@ -1,24 +1,28 @@
 <template>
-  <section>
-    <article class="box m-4" v-if="cmpSingleItem">
-      <h1 class="is-size-2">Title: {{ cmpSingleItem.title }} <button @click="toAddSnapshoot(cmpSingleItem.id)">Add Snapshoot</button></h1>
-      
+    <section class="box m-4" v-if="cmpSingleItem">
+      <div class="title">
+        <h1 class="is-size-2">Title: {{ cmpSingleItem.title }} </h1><button @click="toAddSnapshoot(cmpSingleItem.id)" class="button has-background-primary has-text-white">Add Snapshoot</button>
+      </div>
       <small >Author: {{ cmpSingleItem.author }}</small>
-      <ul>
-        <li v-for="snap in cmpAllSnap" :key="snap.id" @click="toSnapshoot(snap.id)">
-        <ul>
-          <li class="box m-2" v-if="snap.album === $route.params.id">
-            <p class="is-size-4"> {{ snap.title }} </p>
-            <p class="is-size-5"> {{ snap.caption }} </p>
-            <p class="is-size-6"> {{ snap.author }} </p>
-          </li>
-        </ul>
-          
-        </li>
-      </ul>
-    </article>
-  </section>
+
+        <div v-for="snap in cmpAllSnap" :key="snap.id" @click="toSnapshoot(snap.id)">
+          <div class="box m-2 item" v-if="snap.album === $route.params.id">
+            <div>
+              <h2 class="is-size-4"> {{ snap.title }} </h2> 
+              <p class="is-size-5"> {{ snap.caption }} </p>
+              <p class="is-size-6"> {{ snap.author }} </p>
+            </div>
+            <div>
+              <button class="deletebtn button" @click.prevent="deleteSnapshoot(snap.id)">Delete</button>
+            </div>
+          </div>
+        </div>
+    </section>
 </template>
+
+<style>
+  @import '../assets/css/dashboard.css';
+</style>
 
 <script>
 import { dexieDb } from '@/services/dexie.service'
@@ -47,6 +51,11 @@ import { dexieDb } from '@/services/dexie.service'
         },
         toAddSnapshoot: function(id){
           this.$router.push({name: 'CreateView', params:{type: 'snapshoot', id:id}})
+        },
+        deleteSnapshoot(snapid){
+          if(confirm('confirm delete')){
+            dexieDb.snapshoots.delete(snapid)
+          }
         }
       },
     //

@@ -1,18 +1,29 @@
 <template>
   <section class="snapshoot-view-component section">
       <template v-if="$route.params.type === 'snapshoot'">
+
+              <p 
+          v-if="cmpSnapshootlist.length"
+        >
+          Nombre de photos <b>{{cmpSnapshootlist.length}}</b>
+        </p>
         <!-- Display video stream -->
-        <button @click="initVideo()">start video</button>
         <video 
           ref="webcamhandeler"
           playsinline
           autoplay
           @canplay="initCanvas()"
         />
-        <button @click="takePicture()">Take picture</button> 
+        <button @click="initVideo()" class="button has-background-primary has-text-white">start video</button>
+        <button @click="takePicture()" class="button has-background-primary has-text-white">Take picture</button> 
         <canvas id="photoTaken" ref="canvas"></canvas>
-        <button class="camera-download">
-          <a id="downloadPhoto" download="VueRocksPhoto.jpg" role="button" @click="downloadImage">
+        <button class="button camera-download has-background-primary has-text-white">
+          <a  
+            id="downloadPhoto" 
+            download="VueRocksPhoto.jpg" 
+            role="button"
+            @click="downloadImage"
+          >
             Download
           </a>
         </button>
@@ -63,6 +74,13 @@
         BaseForm
       },
     //
+      props: {
+        snapshootlist: {
+          type: Array,
+          required: false,
+          default: () => []
+        }
+      },
 
     data(){
       return {
@@ -178,13 +196,17 @@
           // console.log(event.capture)
           // Dispatch store action
           this.$store.dispatch('pushSnapshootOperation', event)
-            this.cmpSnapshootForm.fieldsets[0].value = null
-            this.cmpSnapshootForm.fieldsets[1].value = null
+          this.cmpSnapshootForm.fieldsets[0].value = null
+          this.cmpSnapshootForm.fieldsets[1].value = null
           this.$toast.success('You added a new snapshoot')
+          let num = parseInt(this.$route.params.id)
+          let albums = await dexieDb.albums.get(num)
+          dexieDb.albums.add('snaps',event.id)
         }
         else if( this.$route.params.type === 'album' ){
           // Add user id
           event.author = this.$store.getters.userinfo.id;
+          event.snaps = []
           // Dispatch store action
           // console.log(event)
           let table = await dexieDb.albums.toArray()
@@ -193,6 +215,7 @@
           if( checkAlbum === false){
             this.$store.dispatch('saveAlbumOperation', event)
             this.cmpAlbumForm.fieldsets[0].value = null
+            this.$toast.success('You added a new snapshoot')
           }else{
             this.$toast.warning(`Album ${event.title} already exist`)
           }
@@ -207,7 +230,10 @@
       // }
       this.video = this.$refs.webcamhandeler
       this.canvas = this.$refs.canvas
-    }
+    },
+    computed: {
+        cmpSnapshootlist: function(){ return this.snapshootlist },
+      },
     
   }
 //

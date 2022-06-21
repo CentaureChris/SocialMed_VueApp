@@ -1,11 +1,21 @@
 <template>
-  <div class="app-shell-component">
+  <div id="app" class="app-shell-component">
+    
+    <ScaleRotate>
+      
+        <router-link :to="{ name: 'HomeView' }" >Home</router-link>
+        <router-link :to="{ name: 'DashboardView' }" >Dashboard</router-link>
+    </ScaleRotate>
+
+    <main id="page-wrap">
     <!-- Header -->
     <HeaderApp 
       :userinfo="$store.getters.userinfo"
       :snapshootlist="$store.getters.snapshootlist"
       @onLogout="onLogout"
-    />
+    >
+    
+    </HeaderApp>
 
     <!-- 
       TODO: Create 'BaseFlashnote.vue'
@@ -19,21 +29,25 @@
     -->
 
     <!-- Main -->
-    <main>
       <!-- User router-view directive -->
       <router-view
         v-slot="{ Component }"
         :key="$route.name"
       >
         <!-- Inject path component in a "component" directive -->
-        <component :is="Component" />
+        <component :is="Component" :snapshootlist="$store.getters.snapshootlist"/>
       </router-view>
-    </main>
 
     <!-- Footer -->
     <FooterApp />
+    </main>
+
   </div>
 </template>
+
+<style>
+  #insta-clone-app-vue{height: 100vh}
+</style>
 
 <script>
 /* 
@@ -47,6 +61,7 @@
   [IMPORT] Modules/components
 */
   import { dexieDb } from './services/dexie.service';
+  import { ScaleRotate } from 'vue3-burger-menu'  // import the CSS transitions you wish to use, in this case we are using `ScaleRotate`
   import HeaderApp from './components/main/HeaderApp.vue';
   import FooterApp from './components/main/FooterApp.vue';
 //
@@ -63,7 +78,7 @@
       Used to inject child components
     */
       components: {
-        HeaderApp, FooterApp
+        HeaderApp, FooterApp, ScaleRotate
       },
 
       // Used to define properties class
@@ -75,7 +90,6 @@
         onLogout: function(event){
           // Save value in the store
           this.$store.dispatch('logoutOperation', event)
-          this.$toast.warning('You are logged out')
         },
       },
 

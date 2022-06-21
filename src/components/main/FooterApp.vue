@@ -1,9 +1,9 @@
 <template>
-  <footer class="footer-app-component">
-      <p>footer-app-component</p>
-  </footer>
+  <div></div>
 </template>
-
+<style>
+  @import '../../assets/css/footer.css';
+</style>
 <script>
 
 export default {

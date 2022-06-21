@@ -144,7 +144,6 @@
           else{
             // Use store action
             this.$store.dispatch('loginOperation', event)
-            // this.$toast.success('You are logged in!')
           }
         },
       },

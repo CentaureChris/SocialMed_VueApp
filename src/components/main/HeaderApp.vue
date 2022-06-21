@@ -1,23 +1,16 @@
 <template>
   <header class="header-app-component section">
-      <div v-if="!cmpUserinfo">
-        header-app-component: is not connected
-      </div>
-      
-      <div v-else >
+      <div id="logout-login_button" v-if="cmpUserinfo">
+      Logged as: {{ cmpUserinfo.name }}
+
         <button 
+          
           class="button"
           v-text="`Logout`"
           @click.prevent="$emit('onLogout', true)"
        />
-        <p 
-          v-if="cmpSnapshootlist.length"
-        >
-          Nombre de photos <b>{{cmpSnapshootlist.length}}</b>
-        </p>
+
       </div>
-
-
       <!-- 
         [LINK] Never use <a>
         To define a basic link use the <router-link> directive has below
@@ -28,7 +21,9 @@
        -->
   </header>
 </template>
-
+<style>
+  @import '../../assets/css/header.css';
+</style>
 <script>
 /* 
   [CTRL] App.vue

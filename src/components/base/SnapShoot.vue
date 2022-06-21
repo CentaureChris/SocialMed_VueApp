@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="button" @click="showModal">Show Picture</button>
+        <button class="button has-background-primary has-text-white" @click="showModal">Show Picture</button>
         <div class="modal" :class="{'is-active': showModalFlag}"></div>
     </div>
     <div class="modal" :class="{'is-active': showModalFlag}">
