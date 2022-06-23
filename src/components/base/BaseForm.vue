@@ -27,7 +27,9 @@
         :min="item.min"
         v-model="item.value"
       >
+      
     </fieldset>
+   <button class="mb-4" @click="displayPass()">Show pass</button>
 
     <BaseCallToAction 
       :item="{
@@ -52,6 +54,7 @@
   [IMPORT] Modules/components
 */
   import BaseCallToAction from './BaseCallToAction.vue';
+
 //
 
 /* 
@@ -69,8 +72,9 @@
         formvalue: {
           type: Object,
           required: true,
-          default: () => {}
-        }
+          default: () => {} 
+        },
+        displayPass: Function
       },
     //
 
@@ -109,6 +113,7 @@
           // Return computed value
           this.$emit('onSubmit', returnedObject)
         },
+
       },
     //
   }

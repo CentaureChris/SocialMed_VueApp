@@ -9,6 +9,7 @@
         class="mb-4"
         :formvalue="cmpStep === 'login' ? cmpLoginForm : cmpRegisterForm"
         @onSubmit="onSubmit(cmpStep, $event)"
+        :displayPass="displayPass" 
       />
       
       <!-- Bind DOM event: @Event -->
@@ -135,7 +136,10 @@
               // Use store action
               this.$store.dispatch('registerOperation', event)
               this.$toast.success('Your account have been registered!')
-
+              this.cmpRegisterForm.fieldsets[0].value = null
+              this.cmpRegisterForm.fieldsets[1].value = null
+              this.cmpRegisterForm.fieldsets[2].value = null
+              this.cmpRegisterForm.fieldsets[3].value = null
             }
             else{ 
               this.$toast.error(`Two password fields are not the same!`);
@@ -146,6 +150,25 @@
             this.$store.dispatch('loginOperation', event)
           }
         },
+        displayPass: function() {
+          if(this.cmpStep == 'login'){
+            if(this.cmpLoginForm.fieldsets[1].type == 'password'){
+              this.cmpLoginForm.fieldsets[1].type = 'text'
+            }else{
+              this.cmpLoginForm.fieldsets[1].type = 'password'
+            }
+          }else{
+            if(this.cmpRegisterForm.fieldsets[2].type ===  'password'){
+              this.cmpRegisterForm.fieldsets[2].type = 'text'
+              this.cmpRegisterForm.fieldsets[3].type = 'text'
+            }else{
+              this.cmpRegisterForm.fieldsets[2].type = 'password'
+              this.cmpRegisterForm.fieldsets[3].type = 'password'
+            }
+          }
+
+          
+        }
       },
     //
 

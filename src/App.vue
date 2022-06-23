@@ -64,6 +64,7 @@
   import { ScaleRotate } from 'vue3-burger-menu'  // import the CSS transitions you wish to use, in this case we are using `ScaleRotate`
   import HeaderApp from './components/main/HeaderApp.vue';
   import FooterApp from './components/main/FooterApp.vue';
+
 //
 
 /* 

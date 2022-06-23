@@ -9,8 +9,7 @@
     import App from './App.vue';
     import Appstore from './store/index'
     import Approuter from './router';
-    import Toaster from '@meforma/vue-toaster';
-
+    import Toaster from '@meforma/vue-toaster'
 //
 
 /* 
