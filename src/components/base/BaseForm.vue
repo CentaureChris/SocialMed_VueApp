@@ -18,6 +18,7 @@
         v-text="item.label"
       />
 
+      <div style="display: flex;" class="">
       <input 
         class="input"
         :type="item.type" 
@@ -27,9 +28,15 @@
         :min="item.min"
         v-model="item.value"
       >
-      
+      <button v-if="item.name ==  'password'" 
+      class="button" 
+      >
+        <font-awesome-icon @click="displayPass()" icon="fa-solid fa-eye" />
+      </button>
+      </div>
     </fieldset>
-   <button class="mb-4" @click="displayPass()">Show pass</button>
+   
+    
 
     <BaseCallToAction 
       :item="{

@@ -10,6 +10,12 @@
     import Appstore from './store/index'
     import Approuter from './router';
     import Toaster from '@meforma/vue-toaster'
+    import { library } from '@fortawesome/fontawesome-svg-core'
+    import { faEye } from '@fortawesome/free-solid-svg-icons'
+    /* import font awesome icon component */
+    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+    library.add(faEye)
+
 //
 
 /* 
@@ -22,5 +28,6 @@
     .use(Toaster,{
         position: 'top-right'
     })
+    .component('font-awesome-icon', FontAwesomeIcon)
     .mount('#insta-clone-app-vue');
 //
