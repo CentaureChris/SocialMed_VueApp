@@ -37,11 +37,14 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 /* 
   [IMPORT] Modules/components
 */
   import BaseForm from '../components/base/BaseForm.vue';
   import BaseCallToAction from '../components/base/BaseCallToAction.vue';
+  import { dexieDb } from "@/services/dexie.service"
+  
 //
 
 /* 
@@ -111,7 +114,7 @@
             {
               label: `Repeate password`,
               type: `password`,
-              name: `password-repeate`,
+              name: `password-repeat`,
               required: true,
               min: 5,
               value: null
@@ -126,12 +129,12 @@
       Used to add functionnalies
     */
       methods: {
-        onSubmit: function(step, event){
+        onSubmit: async function(step, event){
           // Check register form
           if( step === 'register' ){
-            if( event.password === event['password-repeate'] ){
+            if( event.password === event['password-repeat'] ){
               // Delete unused property
-              delete event['password-repeate'];
+              delete event['password-repeat'];
 
               // Use store action
               this.$store.dispatch('registerOperation', event)
@@ -147,7 +150,22 @@
           }
           else{
             // Use store action
-            this.$store.dispatch('loginOperation', event)
+            let users = await dexieDb.users.toArray()
+            let match;
+            for (let user of users){
+              if(user.email == event.email && user.password == event.password){
+                this.$store.dispatch('loginOperation', event)
+                match = true
+                break;
+              }else{
+                match = false
+              }
+            }
+            if(match == true){
+                this.$toast.success("You' re logged in")
+            }else{
+                this.$toast.error('Your email or password must be incorrect! Please try again.')
+            }
           }
         },
         displayPass: function() {

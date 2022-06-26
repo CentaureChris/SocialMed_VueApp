@@ -28,11 +28,11 @@
         :min="item.min"
         v-model="item.value"
       >
-      <button v-if="item.name ==  'password'" 
-      class="button" 
+      <span v-if="item.name ==  'password' || item.name == 'password-repeat'" 
+      class="button"  @click="displayPass()"
       >
-        <font-awesome-icon @click="displayPass()" icon="fa-solid fa-eye" />
-      </button>
+        <font-awesome-icon icon="fa-solid fa-eye" />
+      </span>
       </div>
     </fieldset>
    

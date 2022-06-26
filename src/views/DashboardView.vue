@@ -1,23 +1,15 @@
-<!-- 
-TODO: Display list of albums
-✅ - Get album list from the store
-✅ - Generate a loop 'v-for' on album list
-✅ - Display a child compoenent 'BasePushAlbum.vue':
-✅ - title
-- nombers of snapshoots
-✅ - link to display album
--->
 <template>
   <section class="dashboard-view-component section">
     <h1 class="is-size-2" >Album Dashboard <button @click="addAlbum()">Add new Album</button></h1>
-    <article class="box item" v-for="album in cmpAlbumItem" :key="album.id" @click="toAlbum(album.id)">
-      <div >
-        <h2>{{ album.title }}</h2>
-        <h3>{{ album.id }}</h3>
-        <!-- <p >{{ cmpSnapshootlist.length }}</p> -->
-      </div>
-      <div>
-        <button class="deletebtn button" @click.prevent="deleteAlbum(album.id)">Delete</button>
+    <article class="" v-for="album in cmpAlbumItem" :key="album.id" @click="toAlbum(album.id)">
+      <div class="box m-2 item" v-if="userConnected.id == album.author">
+        <div >
+          <h2>{{ album.title }}</h2>
+          <h3>{{ album.id }}</h3>
+        </div>
+        <div>
+          <button class="deletebtn button" @click.prevent="deleteAlbum(album.id)">Delete</button>
+        </div>
       </div>
     </article>  
   </section>
@@ -37,6 +29,7 @@ import { dexieDb } from '@/services/dexie.service'
 
     data() {
       return {
+        userConnected: JSON.parse(localStorage.getItem('userinfo')),
         cmpAlbumItem: null,
       }
     },
