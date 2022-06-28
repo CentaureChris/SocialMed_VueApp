@@ -8,8 +8,8 @@
       <small >Author: {{ cmpSingleItem.author }}</small>
       <div :class="display" class="item-list">
         <div v-for="snap in cmpAllSnap" :key="snap.id" @click="toSnapshoot(snap.id)">
-          <div class="box m-4 item column is-half" v-if="snap.album === $route.params.id">
-            <div>
+          <div class="box m-4 item column" v-if="snap.album === $route.params.id">
+            <div style="display: block; margin-left: auto; margin-right: auto ">
               <h2 class="is-size-4"> {{ snap.title }} </h2> 
               <img :src="snap.capture" alt="">
               <p><small class=""> {{ snap.caption }} </small></p>

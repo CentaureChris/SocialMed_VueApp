@@ -1,7 +1,10 @@
 <template>
   <section class="dashboard-view-component section">
     <div class="box">
-      <h1 class="is-size-2" >Album Dashboard <button @click="addAlbum()">Add new Album</button></h1>
+      <div style="display:flex; justify-content: space-between">
+      <h1 class="is-size-2" >Album Dashboard </h1>
+      <button @click="addAlbum()" class="button has-background-primary has-text-white">Add new Album</button>
+      </div>
       <article class="" v-for="album in cmpAlbumItem" :key="album.id" @click="toAlbum(album.id)">
         <div class="box m-2 item" v-if="userConnected.id == album.author">
           <div >
