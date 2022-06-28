@@ -2,9 +2,10 @@
 Global color varaibles from Bulma
 */
     // Primary colors (turquoise)
-    $brand-primary-color: hsl(147, 76%, 54%) !default;
+    
+    $brand-primary-color: #07004D!default;
     $brand-primary-color-dark: hsl(147, 76%, 25%) !default;
-    $brand-primary-color-light: hsl(147, 76%, 95%) !default;
+    $brand-primary-color-light: #2D82B7(147, 76%, 95%) !default;
 
     $primary: $brand-primary-color !default;
     $primary-invert: findColorInvert($primary) !default;
@@ -12,9 +13,9 @@ Global color varaibles from Bulma
     $primary-dark: $brand-primary-color-dark !default;
 
     // Secondary colors (cyan)
-    $brand-secondary-color: hsl(80, 76%, 47%) !default;
-    $brand-secondary-color-dark: hsl(80, 76%, 17%) !default;
-    $brand-secondary-color-light: hsl(80, 76%, 87%) !default;
+    $brand-secondary-color: #21D4A4 !default;
+    $brand-secondary-color-dark: #199F7B !default;
+    $brand-secondary-color-light: #60E6C2 !default;
 
     $secondary: $brand-secondary-color !default;
     $secondary-invert: findColorInvert($secondary) !default;

@@ -2,9 +2,8 @@
   <div id="app" class="app-shell-component">
     
     <ScaleRotate>
-      
-        <router-link :to="{ name: 'HomeView' }" >Home</router-link>
-        <router-link :to="{ name: 'DashboardView' }" >Dashboard</router-link>
+        <router-link :to="{ name: 'HomeView' }" class="nav-item">Home</router-link>
+        <router-link :to="{ name: 'DashboardView' }" class="nav-item">Dashboard</router-link>
     </ScaleRotate>
 
     <main id="page-wrap">

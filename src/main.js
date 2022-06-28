@@ -12,9 +12,15 @@
     import Toaster from '@meforma/vue-toaster'
     import { library } from '@fortawesome/fontawesome-svg-core'
     import { faEye } from '@fortawesome/free-solid-svg-icons'
+    import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+    import { faTableCellsLarge } from '@fortawesome/free-solid-svg-icons'
+    import { faTableList } from '@fortawesome/free-solid-svg-icons'
     /* import font awesome icon component */
     import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
     library.add(faEye)
+    library.add(faTableCellsLarge)
+    library.add(faTableList)
+    library.add(faTrashCan)
 
 //
 

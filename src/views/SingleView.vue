@@ -1,22 +1,26 @@
 <template>
     <section class="box m-4" v-if="cmpSingleItem">
-      <div class="title">
-        <h1 class="is-size-2">Title: {{ cmpSingleItem.title }} </h1><button @click="toAddSnapshoot(cmpSingleItem.id)" class="button has-background-primary has-text-white">Add Snapshoot</button>
+      <font-awesome-icon id="displayBtn" :icon="icon" @click="changeDisplay"/>
+      <div class="box-head">
+        <h1 class="title is-size-2">Title: {{ cmpSingleItem.title }} </h1>
+        <button @click="toAddSnapshoot(cmpSingleItem.id)" class="button has-background-primary has-text-white">Add Snapshoot</button>
       </div>
       <small >Author: {{ cmpSingleItem.author }}</small>
-
+      <div :class="display" class="item-list">
         <div v-for="snap in cmpAllSnap" :key="snap.id" @click="toSnapshoot(snap.id)">
-          <div class="box m-2 item" v-if="snap.album === $route.params.id">
+          <div class="box m-4 item column is-half" v-if="snap.album === $route.params.id">
             <div>
               <h2 class="is-size-4"> {{ snap.title }} </h2> 
-              <p class="is-size-5"> {{ snap.caption }} </p>
-              <p class="is-size-6"> {{ snap.author }} </p>
+              <img :src="snap.capture" alt="">
+              <p><small class=""> {{ snap.caption }} </small></p>
+              <!-- <p class="is-size-6"> {{ snap.author }} </p> -->
             </div>
             <div>
-              <button class="deletebtn button" @click.prevent="deleteSnapshoot(snap.id)">Delete</button>
+              <font-awesome-icon icon="fa-solid fa-trash-can" class="red" @click.prevent="deleteSnapshoot(snap.id)"/>
             </div>
           </div>
         </div>
+      </div>
     </section>
 </template>
 
@@ -38,6 +42,8 @@ import { dexieDb } from '@/services/dexie.service'
       return {
         cmpSingleItem: null,
         cmpAllSnap: null,
+        display:'columns is-multiline',
+        icon: 'fa-solid fa-table-list'
       }
     },
 
@@ -46,6 +52,19 @@ import { dexieDb } from '@/services/dexie.service'
       Used to add functionnalies
     */
       methods: {
+        changeDisplay: function(){
+          if(this.display == "columns is-multiline"){
+            this.display = "";
+            this.icon = "fa-solid fa-table-cells-large"
+
+          }else{
+            this.display = "columns is-multiline";
+            this.icon = "fa-solid fa-table-list"
+
+          }
+          
+          console.log(this.display)
+        },
         toSnapshoot: function(id){
           this.$router.push({name: "BasePushAlbum", params: { id: id}})
         },
@@ -55,6 +74,7 @@ import { dexieDb } from '@/services/dexie.service'
         deleteSnapshoot(snapid){
           if(confirm('confirm delete')){
             dexieDb.snapshoots.delete(snapid)
+            this.$toast.error('snapshoot deleted')
           }
         }
       },
@@ -66,7 +86,6 @@ import { dexieDb } from '@/services/dexie.service'
     */
       components: {},
     //
-
     mounted: async function(){
       /* 
         [DEXIE] Save
@@ -78,6 +97,7 @@ import { dexieDb } from '@/services/dexie.service'
           this.$router.push({ name: 'DashboardView' })
         }
         this.cmpAllSnap = await dexieDb.snapshoots.toArray();
+
       //
     }
   }

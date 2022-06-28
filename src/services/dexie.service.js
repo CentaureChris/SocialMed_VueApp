@@ -12,7 +12,7 @@
 */
     dexieDb.version(1).stores({
         users: '++id, name, email, password', // Primary key and indexed props
-        snapshoots: 'id, title, caption, base64, author', // Primary key and indexed props
+        snapshoots: '++id, title, caption, base64, author', // Primary key and indexed props
         albums: '++id, title, snapshoots, author,snaps', // Primary key and indexed props
     });
 //

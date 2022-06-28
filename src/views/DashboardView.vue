@@ -1,17 +1,20 @@
 <template>
   <section class="dashboard-view-component section">
-    <h1 class="is-size-2" >Album Dashboard <button @click="addAlbum()">Add new Album</button></h1>
-    <article class="" v-for="album in cmpAlbumItem" :key="album.id" @click="toAlbum(album.id)">
-      <div class="box m-2 item" v-if="userConnected.id == album.author">
-        <div >
-          <h2>{{ album.title }}</h2>
-          <h3>{{ album.id }}</h3>
+    <div class="box">
+      <h1 class="is-size-2" >Album Dashboard <button @click="addAlbum()">Add new Album</button></h1>
+      <article class="" v-for="album in cmpAlbumItem" :key="album.id" @click="toAlbum(album.id)">
+        <div class="box m-2 item" v-if="userConnected.id == album.author">
+          <div >
+            <h2>{{ album.title }}</h2>
+            <h3>{{ album.id }}</h3>
+          </div>
+          <div>
+            <font-awesome-icon icon="fa-solid fa-trash-can" class="red ml-4"  @click.prevent="deleteAlbum(album.id)"/>
+          </div>
         </div>
-        <div>
-          <button class="deletebtn button" @click.prevent="deleteAlbum(album.id)">Delete</button>
-        </div>
-      </div>
-    </article>  
+      </article>  
+    </div>
+
   </section>
 </template>
 

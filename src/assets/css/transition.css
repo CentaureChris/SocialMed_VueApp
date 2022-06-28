@@ -15,3 +15,36 @@
         transition: 0.3s all ease-out;
     } */
 /**/
+
+
+.bm-menu {
+    background-color:#000051 ;
+}
+
+.nav-item{
+    color: whitesmoke;
+}
+
+.nav-item:hover{
+    color: #df78efac;
+}
+
+.box{
+    background-color:white;
+}
+.item{
+    background-color:  rgba(231, 229, 229, 0.646);
+    min-width: fit-content;
+}
+.red{
+    color: red;
+}
+
+.box-head{
+    display: flex;
+    justify-content: space-between;
+}
+#displayBtn {
+    float: right;
+    margin-left: 2%;
+}

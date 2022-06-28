@@ -1,12 +1,12 @@
 <template>
   <section class="home-view-component section">
     <article 
-      class="box"
+      class="box column is-three-fifths is-offset-one-fifth"
       v-if="!$store.getters.userinfo"
     >
       <!-- Inject value to child compoenent has a HTML property -->
       <BaseForm 
-        class="mb-4"
+        class="mb-4 "
         :formvalue="cmpStep === 'login' ? cmpLoginForm : cmpRegisterForm"
         @onSubmit="onSubmit(cmpStep, $event)"
         :displayPass="displayPass" 

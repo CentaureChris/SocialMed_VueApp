@@ -169,7 +169,7 @@
       takePicture: function(){
         let context = this.canvas.getContext("2d")
         context.drawImage(this.video,0,0,this.video.videoWidth,this.video.videoHeight)
-        // console.log(context)
+        console.log(context)
         // this.$emit('picture-taken',this.canvas.toDataUrl('image/png'))
         const canvas = document.getElementById("photoTaken").toDataURL("image/jpeg");
         // download.setAttribute("href", canvas);
@@ -203,7 +203,7 @@
           let album = await dexieDb.albums.get(num)
           // dexieDb.albums.add('snaps',event.id)
           dexieDb.albums.update(parseInt(this.$route.params.id),{snaps: "" })
-          console.log(event)
+          // console.log(event)
         }
         else if( this.$route.params.type === 'album' ){
           // Add user id
