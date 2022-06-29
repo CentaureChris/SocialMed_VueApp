@@ -5,9 +5,9 @@
       <h1 class="is-size-2" >Album Dashboard </h1>
       <button @click="addAlbum()" class="button has-background-primary has-text-white">Add new Album</button>
       </div>
-      <article class="" v-for="album in cmpAlbumItem" :key="album.id" @click="toAlbum(album.id)">
-        <div class="box m-2 item" v-if="userConnected.id == album.author">
-          <div >
+      <article class="" v-for="album in cmpAlbumItem" :key="album.id" >
+        <div class="box m-2 item" v-if="userConnected.id == album.author" >
+          <div class="album-item" style="width:90%" @click="toAlbum(album.id)">
             <h2>{{ album.title }}</h2>
             <h3>{{ album.id }}</h3>
           </div>
@@ -50,6 +50,8 @@ import { dexieDb } from '@/services/dexie.service'
       deleteAlbum: function(albumId){
         if(confirm('confirm delete')){
           dexieDb.albums.delete(albumId)
+          this.$toast.error('album deleted')
+          this.$router.go()
         }
       }
     },
@@ -59,8 +61,9 @@ import { dexieDb } from '@/services/dexie.service'
         [DEXIE] Save
         Save API response in Dexie
       */
-        // Save new snapshot in IndexDB with Dexie.js
+        // Save new album in IndexDB with Dexie.js
         this.cmpAlbumItem = await dexieDb.albums.toArray();
+        console.log('mounted')
      },
     /* 
       [VUE] Component

@@ -76,14 +76,7 @@ import { dexieDb } from '@/services/dexie.service'
           }
         }
       },
-    //
-
-    /* 
-      [VUE] Component
-      Used to inject child components
-    */
-      components: {},
-    //
+    
     mounted: async function(){
       /* 
         [DEXIE] Save
@@ -92,14 +85,18 @@ import { dexieDb } from '@/services/dexie.service'
         // Save new snapshot in IndexDB with Dexie.js
 
         this.cmpAllSnap = await dexieDb.snapshoots.toArray();
-
         this.cmpSingleItem = await dexieDb.albums.get( +this.$route.params.id );
-        if(!this.cmpSingleItem){
-          this.$router.push({ name: 'DashboardView' })
-        }
-
-      //
-    }
+        
+        // if(!this.cmpSingleItem){
+        //   this.$router.push({ name: 'DashboardView' })
+        // }
+        console.log('mounted')
+    },
+    /* 
+      [VUE] Component
+      Used to inject child components
+    */
+      components: {},
   }
 //
 </script>
