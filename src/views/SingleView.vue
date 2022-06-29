@@ -7,9 +7,9 @@
       </div>
       <small >Author: {{ cmpSingleItem.author }}</small>
       <div :class="display" class="item-list">
-        <div v-for="snap in cmpAllSnap" :key="snap.id" @click="toSnapshoot(snap.id)">
+        <div v-for="snap in cmpAllSnap" :key="snap.id" >
           <div class="box m-4 item column" v-if="snap.album === $route.params.id">
-            <div style="display: block; margin-left: auto; margin-right: auto ">
+            <div style="display: block; margin-left: auto; margin-right: auto" @click="toSnapshoot(snap.id)">
               <h2 class="is-size-4"> {{ snap.title }} </h2> 
               <img :src="snap.capture" alt="">
               <p><small class=""> {{ snap.caption }} </small></p>
@@ -60,10 +60,7 @@ import { dexieDb } from '@/services/dexie.service'
           }else{
             this.display = "columns is-multiline";
             this.icon = "fa-solid fa-table-list"
-
           }
-          
-          console.log(this.display)
         },
         toSnapshoot: function(id){
           this.$router.push({name: "BasePushAlbum", params: { id: id}})
@@ -71,10 +68,11 @@ import { dexieDb } from '@/services/dexie.service'
         toAddSnapshoot: function(id){
           this.$router.push({name: 'CreateView', params:{type: 'snapshoot', id:id}})
         },
-        deleteSnapshoot(snapid){
+        deleteSnapshoot: function (snapid){
           if(confirm('confirm delete')){
             dexieDb.snapshoots.delete(snapid)
             this.$toast.error('snapshoot deleted')
+            this.$router.go()
           }
         }
       },
@@ -92,11 +90,13 @@ import { dexieDb } from '@/services/dexie.service'
         Save API response in Dexie
       */
         // Save new snapshot in IndexDB with Dexie.js
+
+        this.cmpAllSnap = await dexieDb.snapshoots.toArray();
+
         this.cmpSingleItem = await dexieDb.albums.get( +this.$route.params.id );
         if(!this.cmpSingleItem){
           this.$router.push({ name: 'DashboardView' })
         }
-        this.cmpAllSnap = await dexieDb.snapshoots.toArray();
 
       //
     }
