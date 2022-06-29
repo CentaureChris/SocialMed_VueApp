@@ -1,14 +1,16 @@
 # insta-clone-app-vue
 
 ## Project setup
-```
 First clone the repository
-in terminal: $npm install
+in terminal: 
+```
+npm install
 ```
 
 ### Compiles and hot-reloads for development
+launch the app with:
 ```
-launch the app with: $npm run serve
+npm run serve
 ```
 ### Use the app
 At first connection you'll arrive on the login page, For the first time there is no user registered so create one
